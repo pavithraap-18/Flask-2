@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Details</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 60%;
+            margin: auto;
+        }
+        th, td {
+            border: 1px solid #333;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .excellent {
+            background-color: #d4edda;
+            color: green;
+            font-weight: bold;
+        }
+        .average {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        .fail {
+            background-color: #f8d7da;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align:center;">Student List</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Marks</th>
+            <th>Grade</th>
+        </tr>
+
+        {% for student in students %}
+        <tr 
+            class="{% if student.marks >= 90 %}excellent{% elif student.marks >= 60 %}average{% else %}fail{% endif %}">
+            <td>{{ student.id }}</td>
+            <td>{{ student.name }}</td>
+            <td>{{ student.marks }}</td>
+            <td>
+                {% if student.marks >= 90 %}
+                    A
+                {% elif student.marks >= 60 %}
+                    B
+                {% else %}
+                    C
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
